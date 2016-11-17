@@ -6,10 +6,14 @@ $password = '';
 $dbname = 'world';
 
 $country = $_GET['country'];
+$all = strcasecmp($_GET['all'], "true")==0;
 
 $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
 
-$stmt = $conn->query("SELECT * FROM countries WHERE name LIKE '%$country%'");
+if($all)
+    $stmt = $conn->query("SELECT * FROM countries");
+else
+    $stmt = $conn->query("SELECT * FROM countries WHERE name LIKE '%$country%'");
 
 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

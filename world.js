@@ -4,7 +4,7 @@ $(document).ready(function(){
         $.ajax({
             method: "GET",
             url: "world.php",
-            data: { country: $("#country").val() }
+            data: { country: $("#country").val(), all: $("#all").prop("checked") }
         }).done(function(msg){
             $("#result").html(msg);
         });
